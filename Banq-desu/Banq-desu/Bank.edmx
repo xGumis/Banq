@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="banqModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="banqModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="KARTY">
           <Key>
             <PropertyRef Name="id" />
@@ -25,6 +25,7 @@
           <Property Name="adres" Type="nvarchar(max)" Nullable="false" />
           <Property Name="nr_telefonu" Type="int" />
           <Property Name="email" Type="nvarchar(max)" />
+          <Property Name="haslo" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="KONTA">
           <Key>
@@ -33,7 +34,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nr_konta" Type="int" Nullable="false" />
           <Property Name="rodzaj" Type="nvarchar" MaxLength="35" Nullable="false" />
-          <Property Name="saldo" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="saldo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="id_klienta" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="KREDYTY">
@@ -43,11 +44,11 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="data_pobrania" Type="date" Nullable="false" />
           <Property Name="nr_umowy" Type="int" Nullable="false" />
-          <Property Name="przyznana_kwota" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="pozostala_kwota" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="przyznana_kwota" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="pozostala_kwota" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="liczba_rat" Type="int" Nullable="false" />
-          <Property Name="oprocentowanie" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="kwota_raty" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="oprocentowanie" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="kwota_raty" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="data_splaty" Type="date" Nullable="false" />
           <Property Name="id_klienta" Type="int" Nullable="false" />
         </EntityType>
@@ -57,7 +58,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="waluta" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="kwota" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="kwota" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="data" Type="date" Nullable="false" />
           <Property Name="nadawca" Type="int" Nullable="false" />
           <Property Name="odbiorca" Type="int" Nullable="false" />
@@ -150,8 +151,7 @@
             <End Role="TRANSAKCJE" EntitySet="TRANSAKCJE" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="banqModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -178,6 +178,7 @@
           <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="KONTA" Relationship="Self.FK__KONTA__id_klient__3A81B327" FromRole="KLIENCI" ToRole="KONTA" />
           <NavigationProperty Name="KREDYTY" Relationship="Self.FK__KREDYTY__id_klie__412EB0B6" FromRole="KLIENCI" ToRole="KREDYTY" />
+          <Property Name="haslo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="KONTA">
           <Key>
@@ -186,7 +187,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nr_konta" Type="Int32" Nullable="false" />
           <Property Name="rodzaj" Type="String" MaxLength="35" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="saldo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="saldo" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="id_klienta" Type="Int32" Nullable="false" />
           <NavigationProperty Name="KARTY" Relationship="Self.FK__KARTY__id_konta__3E52440B" FromRole="KONTA" ToRole="KARTY" />
           <NavigationProperty Name="KLIENCI" Relationship="Self.FK__KONTA__id_klient__3A81B327" FromRole="KONTA" ToRole="KLIENCI" />
@@ -200,11 +201,11 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="data_pobrania" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="nr_umowy" Type="Int32" Nullable="false" />
-          <Property Name="przyznana_kwota" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="pozostala_kwota" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="przyznana_kwota" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="pozostala_kwota" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="liczba_rat" Type="Int32" Nullable="false" />
-          <Property Name="oprocentowanie" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="kwota_raty" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="oprocentowanie" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="kwota_raty" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="data_splaty" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="id_klienta" Type="Int32" Nullable="false" />
           <NavigationProperty Name="KLIENCI" Relationship="Self.FK__KREDYTY__id_klie__412EB0B6" FromRole="KREDYTY" ToRole="KLIENCI" />
@@ -215,7 +216,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="waluta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="kwota" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="kwota" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="data" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="nadawca" Type="Int32" Nullable="false" />
           <Property Name="odbiorca" Type="Int32" Nullable="false" />
@@ -330,6 +331,7 @@
           <EntitySetMapping Name="KLIENCI">
             <EntityTypeMapping TypeName="banqModel.KLIENCI">
               <MappingFragment StoreEntitySet="KLIENCI">
+                <ScalarProperty Name="haslo" ColumnName="haslo" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="imie" ColumnName="imie" />
                 <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />

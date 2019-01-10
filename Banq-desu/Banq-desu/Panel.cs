@@ -297,17 +297,17 @@ namespace Banq_desu
         private void Konto_Ch(ref KONTA tmp)
         {
             tmp.nr_konta = int.Parse(textBoxKontaNr.Text);
-            tmp.rodzaj = textBoxKontaRodz.Text;
+            tmp.rodzaj = comboBoxKonta_Rodzaj.Text;
             tmp.saldo = decimal.Parse(textBoxKontaSald.Text);
             tmp.id_klienta = klient.id;
         }
         private void Transakcje_Ch(ref TRANSAKCJE tmp)
         {
-            tmp.data = System.DateTime.Parse(textBoxTransData.Text);
+            tmp.data = System.DateTime.Today;
             tmp.kwota = decimal.Parse(textBoxTransKwota.Text);
             tmp.odbiorca = int.Parse(textBoxTransOdb.Text);
             tmp.tytul = textBoxTransTyt.Text;
-            tmp.waluta = textBoxTransWaluta.Text;
+            tmp.waluta = comboBoxTrans_Waluta.Text;
             if (textBoxTransNad.Text.Length < 1)
                 tmp.nadawca = konto.id;
             else tmp.nadawca = int.Parse(textBoxTransNad.Text);
@@ -342,11 +342,12 @@ namespace Banq_desu
             splitContainerKredyty.Enabled = true;
             buttonKlientEdit.Enabled = true;
             buttonKlient_Del.Enabled = true;
+            buttonPass.Enabled = true;
         }
         private void Konto_Sel()
         {
             textBoxKontaNr.Text = konto.nr_konta.ToString();
-            textBoxKontaRodz.Text = konto.rodzaj;
+            comboBoxKonta_Rodzaj.Text = konto.rodzaj;
             textBoxKontaSald.Text = konto.saldo.ToString();
             splitContainerKarty.Enabled = true;
             splitContainerTrans.Enabled = true;
@@ -359,7 +360,7 @@ namespace Banq_desu
             textBoxTransKwota.Text = transakcja.kwota.ToString();
             textBoxTransOdb.Text = transakcja.odbiorca.ToString();
             textBoxTransTyt.Text = transakcja.tytul;
-            textBoxTransWaluta.Text = transakcja.waluta;
+            comboBoxTrans_Waluta.Text = transakcja.waluta;
             textBoxTransNad.Text = transakcja.nadawca.ToString();
             buttonTransEdit.Enabled = true;
             buttonTrans_Del.Enabled = true;
@@ -406,6 +407,7 @@ namespace Banq_desu
             buttonKonta_Del.Visible = true;
             buttonKredyty_Del.Visible = true;
             buttonTrans_Del.Visible = true;
+            buttonPass.Visible = true;
         }
         #endregion
         #region Del
@@ -459,5 +461,14 @@ namespace Banq_desu
             }
         }
         #endregion
+
+        private void buttonPass_Click(object sender, EventArgs e)
+        {
+            if(klient != null)
+            {
+                Pass form = new Pass(klient, db);
+                form.Show();
+            }
+        }
     }
 }

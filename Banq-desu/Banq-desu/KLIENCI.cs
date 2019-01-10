@@ -27,6 +27,7 @@ namespace Banq_desu
         public string adres { get; set; }
         public Nullable<int> nr_telefonu { get; set; }
         public string email { get; set; }
+        public string haslo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KONTA> KONTA { get; set; }

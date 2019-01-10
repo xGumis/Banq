@@ -22,7 +22,7 @@ namespace Banq_desu
         {
             var db = new banqEntities();
             int id;
-            if (textBoxLogin.Text == "admin")
+            if (textBoxLogin.Text == "admin" && textBox_Pass.Text == "1234")
             {
                 Log("admin");
             }
@@ -30,9 +30,11 @@ namespace Banq_desu
             {
                 if (db.KLIENCI.Where(k => k.id == id).Count() > 0)
                 {
-                    Log(textBoxLogin.Text);
+                    if(db.KLIENCI.Where(k => k.id == id).ToList().First().haslo == textBox_Pass.Text)
+                        Log(textBoxLogin.Text);
+                    else MessageBox.Show("Nie udało się zalogować.");
                 }
-                else MessageBox.Show("Nie udało się zalogować.");
+                else MessageBox.Show("Nie znaleziono klienta.");
             }
             else MessageBox.Show("To nie jest numer.");
         }

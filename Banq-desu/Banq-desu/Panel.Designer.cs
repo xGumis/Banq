@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageKlienci = new System.Windows.Forms.TabPage();
             this.splitContainerKlient = new System.Windows.Forms.SplitContainer();
+            this.buttonKlient_Del = new System.Windows.Forms.Button();
             this.buttonKlientEdit = new System.Windows.Forms.Button();
             this.buttonKlientNew = new System.Windows.Forms.Button();
             this.textBoxKlientEmail = new System.Windows.Forms.TextBox();
@@ -51,11 +53,11 @@
             this.splitContainerKonta = new System.Windows.Forms.SplitContainer();
             this.listViewKonta = new System.Windows.Forms.ListView();
             this.buttonKontaShow = new System.Windows.Forms.Button();
+            this.buttonKonta_Del = new System.Windows.Forms.Button();
             this.buttonKontaEdit = new System.Windows.Forms.Button();
             this.buttonKontaNew = new System.Windows.Forms.Button();
             this.textBoxKontaSald = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.textBoxKontaRodz = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.textBoxKontaNr = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
@@ -63,9 +65,9 @@
             this.splitContainerTrans = new System.Windows.Forms.SplitContainer();
             this.listViewTransakcje = new System.Windows.Forms.ListView();
             this.buttonTransakcjeShow = new System.Windows.Forms.Button();
+            this.buttonTrans_Del = new System.Windows.Forms.Button();
             this.buttonTransEdit = new System.Windows.Forms.Button();
             this.buttonTransNew = new System.Windows.Forms.Button();
-            this.textBoxTransWaluta = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.textBoxTransKwota = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -81,6 +83,7 @@
             this.splitContainerKarty = new System.Windows.Forms.SplitContainer();
             this.listViewKarty = new System.Windows.Forms.ListView();
             this.buttonKartyShow = new System.Windows.Forms.Button();
+            this.buttonKarty_Del = new System.Windows.Forms.Button();
             this.buttonKartyEdit = new System.Windows.Forms.Button();
             this.buttonKartyNew = new System.Windows.Forms.Button();
             this.textBoxKartyRodzaj = new System.Windows.Forms.TextBox();
@@ -93,6 +96,7 @@
             this.splitContainerKredyty = new System.Windows.Forms.SplitContainer();
             this.listViewKredyty = new System.Windows.Forms.ListView();
             this.buttonKredytyShow = new System.Windows.Forms.Button();
+            this.buttonKredyty_Del = new System.Windows.Forms.Button();
             this.buttonKredytyEdit = new System.Windows.Forms.Button();
             this.buttonKredytyNew = new System.Windows.Forms.Button();
             this.textBoxKwo = new System.Windows.Forms.TextBox();
@@ -111,11 +115,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxNrU = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonKlient_Del = new System.Windows.Forms.Button();
-            this.buttonKonta_Del = new System.Windows.Forms.Button();
-            this.buttonTrans_Del = new System.Windows.Forms.Button();
-            this.buttonKarty_Del = new System.Windows.Forms.Button();
-            this.buttonKredyty_Del = new System.Windows.Forms.Button();
+            this.comboBoxKonta_Rodzaj = new System.Windows.Forms.ComboBox();
+            this.comboBoxTrans_Waluta = new System.Windows.Forms.ComboBox();
+            this.buttonPass = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageKlienci.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerKlient)).BeginInit();
@@ -178,6 +180,7 @@
             // 
             // splitContainerKlient.Panel1
             // 
+            this.splitContainerKlient.Panel1.Controls.Add(this.buttonPass);
             this.splitContainerKlient.Panel1.Controls.Add(this.buttonKlient_Del);
             this.splitContainerKlient.Panel1.Controls.Add(this.buttonKlientEdit);
             this.splitContainerKlient.Panel1.Controls.Add(this.buttonKlientNew);
@@ -199,6 +202,18 @@
             this.splitContainerKlient.Size = new System.Drawing.Size(761, 495);
             this.splitContainerKlient.SplitterDistance = 253;
             this.splitContainerKlient.TabIndex = 0;
+            // 
+            // buttonKlient_Del
+            // 
+            this.buttonKlient_Del.Enabled = false;
+            this.buttonKlient_Del.Location = new System.Drawing.Point(80, 335);
+            this.buttonKlient_Del.Name = "buttonKlient_Del";
+            this.buttonKlient_Del.Size = new System.Drawing.Size(75, 23);
+            this.buttonKlient_Del.TabIndex = 50;
+            this.buttonKlient_Del.Text = "Usuń";
+            this.buttonKlient_Del.UseVisualStyleBackColor = true;
+            this.buttonKlient_Del.Visible = false;
+            this.buttonKlient_Del.Click += new System.EventHandler(this.buttonKlient_Del_Click);
             // 
             // buttonKlientEdit
             // 
@@ -307,6 +322,8 @@
             // 
             this.listViewKlient.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewKlient.FullRowSelect = true;
+            this.listViewKlient.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem3});
             this.listViewKlient.Location = new System.Drawing.Point(0, 0);
             this.listViewKlient.Name = "listViewKlient";
             this.listViewKlient.Size = new System.Drawing.Size(504, 472);
@@ -373,12 +390,12 @@
             // 
             // splitContainerKonta.Panel2
             // 
+            this.splitContainerKonta.Panel2.Controls.Add(this.comboBoxKonta_Rodzaj);
             this.splitContainerKonta.Panel2.Controls.Add(this.buttonKonta_Del);
             this.splitContainerKonta.Panel2.Controls.Add(this.buttonKontaEdit);
             this.splitContainerKonta.Panel2.Controls.Add(this.buttonKontaNew);
             this.splitContainerKonta.Panel2.Controls.Add(this.textBoxKontaSald);
             this.splitContainerKonta.Panel2.Controls.Add(this.label21);
-            this.splitContainerKonta.Panel2.Controls.Add(this.textBoxKontaRodz);
             this.splitContainerKonta.Panel2.Controls.Add(this.label22);
             this.splitContainerKonta.Panel2.Controls.Add(this.textBoxKontaNr);
             this.splitContainerKonta.Panel2.Controls.Add(this.label23);
@@ -409,6 +426,18 @@
             this.buttonKontaShow.Text = "Pokaż";
             this.buttonKontaShow.UseVisualStyleBackColor = true;
             this.buttonKontaShow.Click += new System.EventHandler(this.buttonKontaShow_Click);
+            // 
+            // buttonKonta_Del
+            // 
+            this.buttonKonta_Del.Enabled = false;
+            this.buttonKonta_Del.Location = new System.Drawing.Point(76, 197);
+            this.buttonKonta_Del.Name = "buttonKonta_Del";
+            this.buttonKonta_Del.Size = new System.Drawing.Size(75, 23);
+            this.buttonKonta_Del.TabIndex = 51;
+            this.buttonKonta_Del.Text = "Usuń";
+            this.buttonKonta_Del.UseVisualStyleBackColor = true;
+            this.buttonKonta_Del.Visible = false;
+            this.buttonKonta_Del.Click += new System.EventHandler(this.buttonKonta_Del_Click);
             // 
             // buttonKontaEdit
             // 
@@ -448,13 +477,6 @@
             this.label21.Size = new System.Drawing.Size(34, 13);
             this.label21.TabIndex = 40;
             this.label21.Text = "Saldo";
-            // 
-            // textBoxKontaRodz
-            // 
-            this.textBoxKontaRodz.Location = new System.Drawing.Point(33, 83);
-            this.textBoxKontaRodz.Name = "textBoxKontaRodz";
-            this.textBoxKontaRodz.Size = new System.Drawing.Size(100, 20);
-            this.textBoxKontaRodz.TabIndex = 39;
             // 
             // label22
             // 
@@ -506,10 +528,10 @@
             // 
             // splitContainerTrans.Panel2
             // 
+            this.splitContainerTrans.Panel2.Controls.Add(this.comboBoxTrans_Waluta);
             this.splitContainerTrans.Panel2.Controls.Add(this.buttonTrans_Del);
             this.splitContainerTrans.Panel2.Controls.Add(this.buttonTransEdit);
             this.splitContainerTrans.Panel2.Controls.Add(this.buttonTransNew);
-            this.splitContainerTrans.Panel2.Controls.Add(this.textBoxTransWaluta);
             this.splitContainerTrans.Panel2.Controls.Add(this.label11);
             this.splitContainerTrans.Panel2.Controls.Add(this.textBoxTransKwota);
             this.splitContainerTrans.Panel2.Controls.Add(this.label12);
@@ -548,6 +570,18 @@
             this.buttonTransakcjeShow.UseVisualStyleBackColor = true;
             this.buttonTransakcjeShow.Click += new System.EventHandler(this.buttonTransakcjeShow_Click);
             // 
+            // buttonTrans_Del
+            // 
+            this.buttonTrans_Del.Enabled = false;
+            this.buttonTrans_Del.Location = new System.Drawing.Point(80, 349);
+            this.buttonTrans_Del.Name = "buttonTrans_Del";
+            this.buttonTrans_Del.Size = new System.Drawing.Size(75, 23);
+            this.buttonTrans_Del.TabIndex = 51;
+            this.buttonTrans_Del.Text = "Usuń";
+            this.buttonTrans_Del.UseVisualStyleBackColor = true;
+            this.buttonTrans_Del.Visible = false;
+            this.buttonTrans_Del.Click += new System.EventHandler(this.buttonTrans_Del_Click);
+            // 
             // buttonTransEdit
             // 
             this.buttonTransEdit.Enabled = false;
@@ -569,13 +603,6 @@
             this.buttonTransNew.Text = "Dodaj";
             this.buttonTransNew.UseVisualStyleBackColor = true;
             this.buttonTransNew.Click += new System.EventHandler(this.buttonTransNew_Click);
-            // 
-            // textBoxTransWaluta
-            // 
-            this.textBoxTransWaluta.Location = new System.Drawing.Point(34, 281);
-            this.textBoxTransWaluta.Name = "textBoxTransWaluta";
-            this.textBoxTransWaluta.Size = new System.Drawing.Size(100, 20);
-            this.textBoxTransWaluta.TabIndex = 29;
             // 
             // label11
             // 
@@ -604,6 +631,7 @@
             // 
             // textBoxTransData
             // 
+            this.textBoxTransData.Enabled = false;
             this.textBoxTransData.Location = new System.Drawing.Point(34, 178);
             this.textBoxTransData.Name = "textBoxTransData";
             this.textBoxTransData.Size = new System.Drawing.Size(100, 20);
@@ -728,6 +756,18 @@
             this.buttonKartyShow.Text = "Pokaż";
             this.buttonKartyShow.UseVisualStyleBackColor = true;
             this.buttonKartyShow.Click += new System.EventHandler(this.buttonKartyShow_Click);
+            // 
+            // buttonKarty_Del
+            // 
+            this.buttonKarty_Del.Enabled = false;
+            this.buttonKarty_Del.Location = new System.Drawing.Point(70, 188);
+            this.buttonKarty_Del.Name = "buttonKarty_Del";
+            this.buttonKarty_Del.Size = new System.Drawing.Size(75, 23);
+            this.buttonKarty_Del.TabIndex = 51;
+            this.buttonKarty_Del.Text = "Usuń";
+            this.buttonKarty_Del.UseVisualStyleBackColor = true;
+            this.buttonKarty_Del.Visible = false;
+            this.buttonKarty_Del.Click += new System.EventHandler(this.buttonKarty_Del_Click);
             // 
             // buttonKartyEdit
             // 
@@ -870,6 +910,18 @@
             this.buttonKredytyShow.Text = "Pokaż";
             this.buttonKredytyShow.UseVisualStyleBackColor = true;
             this.buttonKredytyShow.Click += new System.EventHandler(this.buttonKredytyShow_Click);
+            // 
+            // buttonKredyty_Del
+            // 
+            this.buttonKredyty_Del.Enabled = false;
+            this.buttonKredyty_Del.Location = new System.Drawing.Point(67, 460);
+            this.buttonKredyty_Del.Name = "buttonKredyty_Del";
+            this.buttonKredyty_Del.Size = new System.Drawing.Size(75, 23);
+            this.buttonKredyty_Del.TabIndex = 51;
+            this.buttonKredyty_Del.Text = "Usuń";
+            this.buttonKredyty_Del.UseVisualStyleBackColor = true;
+            this.buttonKredyty_Del.Visible = false;
+            this.buttonKredyty_Del.Click += new System.EventHandler(this.buttonKredyty_Del_Click);
             // 
             // buttonKredytyEdit
             // 
@@ -1022,65 +1074,41 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nr umowy";
             // 
-            // buttonKlient_Del
+            // comboBoxKonta_Rodzaj
             // 
-            this.buttonKlient_Del.Enabled = false;
-            this.buttonKlient_Del.Location = new System.Drawing.Point(80, 335);
-            this.buttonKlient_Del.Name = "buttonKlient_Del";
-            this.buttonKlient_Del.Size = new System.Drawing.Size(75, 23);
-            this.buttonKlient_Del.TabIndex = 50;
-            this.buttonKlient_Del.Text = "Usuń";
-            this.buttonKlient_Del.UseVisualStyleBackColor = true;
-            this.buttonKlient_Del.Visible = false;
-            this.buttonKlient_Del.Click += new System.EventHandler(this.buttonKlient_Del_Click);
+            this.comboBoxKonta_Rodzaj.FormattingEnabled = true;
+            this.comboBoxKonta_Rodzaj.Items.AddRange(new object[] {
+            "oszczędnościowe",
+            "zwykłe",
+            "walutowe"});
+            this.comboBoxKonta_Rodzaj.Location = new System.Drawing.Point(30, 83);
+            this.comboBoxKonta_Rodzaj.Name = "comboBoxKonta_Rodzaj";
+            this.comboBoxKonta_Rodzaj.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxKonta_Rodzaj.TabIndex = 52;
             // 
-            // buttonKonta_Del
+            // comboBoxTrans_Waluta
             // 
-            this.buttonKonta_Del.Enabled = false;
-            this.buttonKonta_Del.Location = new System.Drawing.Point(76, 197);
-            this.buttonKonta_Del.Name = "buttonKonta_Del";
-            this.buttonKonta_Del.Size = new System.Drawing.Size(75, 23);
-            this.buttonKonta_Del.TabIndex = 51;
-            this.buttonKonta_Del.Text = "Usuń";
-            this.buttonKonta_Del.UseVisualStyleBackColor = true;
-            this.buttonKonta_Del.Visible = false;
-            this.buttonKonta_Del.Click += new System.EventHandler(this.buttonKonta_Del_Click);
+            this.comboBoxTrans_Waluta.FormattingEnabled = true;
+            this.comboBoxTrans_Waluta.Items.AddRange(new object[] {
+            "EUR",
+            "PLN",
+            "USD"});
+            this.comboBoxTrans_Waluta.Location = new System.Drawing.Point(34, 281);
+            this.comboBoxTrans_Waluta.Name = "comboBoxTrans_Waluta";
+            this.comboBoxTrans_Waluta.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxTrans_Waluta.TabIndex = 53;
             // 
-            // buttonTrans_Del
+            // buttonPass
             // 
-            this.buttonTrans_Del.Enabled = false;
-            this.buttonTrans_Del.Location = new System.Drawing.Point(80, 349);
-            this.buttonTrans_Del.Name = "buttonTrans_Del";
-            this.buttonTrans_Del.Size = new System.Drawing.Size(75, 23);
-            this.buttonTrans_Del.TabIndex = 51;
-            this.buttonTrans_Del.Text = "Usuń";
-            this.buttonTrans_Del.UseVisualStyleBackColor = true;
-            this.buttonTrans_Del.Visible = false;
-            this.buttonTrans_Del.Click += new System.EventHandler(this.buttonTrans_Del_Click);
-            // 
-            // buttonKarty_Del
-            // 
-            this.buttonKarty_Del.Enabled = false;
-            this.buttonKarty_Del.Location = new System.Drawing.Point(70, 188);
-            this.buttonKarty_Del.Name = "buttonKarty_Del";
-            this.buttonKarty_Del.Size = new System.Drawing.Size(75, 23);
-            this.buttonKarty_Del.TabIndex = 51;
-            this.buttonKarty_Del.Text = "Usuń";
-            this.buttonKarty_Del.UseVisualStyleBackColor = true;
-            this.buttonKarty_Del.Visible = false;
-            this.buttonKarty_Del.Click += new System.EventHandler(this.buttonKarty_Del_Click);
-            // 
-            // buttonKredyty_Del
-            // 
-            this.buttonKredyty_Del.Enabled = false;
-            this.buttonKredyty_Del.Location = new System.Drawing.Point(67, 460);
-            this.buttonKredyty_Del.Name = "buttonKredyty_Del";
-            this.buttonKredyty_Del.Size = new System.Drawing.Size(75, 23);
-            this.buttonKredyty_Del.TabIndex = 51;
-            this.buttonKredyty_Del.Text = "Usuń";
-            this.buttonKredyty_Del.UseVisualStyleBackColor = true;
-            this.buttonKredyty_Del.Visible = false;
-            this.buttonKredyty_Del.Click += new System.EventHandler(this.buttonKredyty_Del_Click);
+            this.buttonPass.Enabled = false;
+            this.buttonPass.Location = new System.Drawing.Point(80, 364);
+            this.buttonPass.Name = "buttonPass";
+            this.buttonPass.Size = new System.Drawing.Size(75, 23);
+            this.buttonPass.TabIndex = 51;
+            this.buttonPass.Text = "Zmień hasło";
+            this.buttonPass.UseVisualStyleBackColor = true;
+            this.buttonPass.Visible = false;
+            this.buttonPass.Click += new System.EventHandler(this.buttonPass_Click);
             // 
             // Panel
             // 
@@ -1179,7 +1207,6 @@
         private System.Windows.Forms.Button buttonTransakcjeShow;
         private System.Windows.Forms.Button buttonTransEdit;
         private System.Windows.Forms.Button buttonTransNew;
-        private System.Windows.Forms.TextBox textBoxTransWaluta;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBoxTransKwota;
         private System.Windows.Forms.Label label12;
@@ -1195,7 +1222,6 @@
         private System.Windows.Forms.Button buttonKontaNew;
         private System.Windows.Forms.TextBox textBoxKontaSald;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox textBoxKontaRodz;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox textBoxKontaNr;
         private System.Windows.Forms.Label label23;
@@ -1216,5 +1242,8 @@
         private System.Windows.Forms.Button buttonTrans_Del;
         private System.Windows.Forms.Button buttonKarty_Del;
         private System.Windows.Forms.Button buttonKredyty_Del;
+        private System.Windows.Forms.ComboBox comboBoxKonta_Rodzaj;
+        private System.Windows.Forms.ComboBox comboBoxTrans_Waluta;
+        private System.Windows.Forms.Button buttonPass;
     }
 }
